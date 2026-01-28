@@ -48,6 +48,8 @@ User guest logoff!
 Login:
 ```
 
+Note that if you log out, everything are erased, like a sandbox console.
+
 **How to install packages?**
 
 To install a package in PyLinux, use this format:
@@ -55,6 +57,8 @@ To install a package in PyLinux, use this format:
 ``` bash
 bee install <package>
 ```
+
+Bee is a package installer, which installs local pacakges not yet installed.
 
 However, all packages are loaded automatically and will be enabled by doing this command. Some packages are preinstalled, such as Questa (virtual storage). To check for the package catalog to install, type this:
 ``` bash
@@ -75,11 +79,26 @@ you would receive this:
 ``` bash
 sudo bee install xfce4: cmd not found
 ```
-That's because desktop environments are made with C++ and other complex programming languages, which PyLiux can't do. If you want a graphical desktop interface, you need to install a real Linux distro instead of PyLinux.
+That's because desktop environments are made with C++ and other complex programming languages, which PyLinux can't do. If you want a graphical desktop interface, you need to install a real Linux distro instead of PyLinux.
 
 **Is PyLinux like a real Linux console?**
 
 No, it is just a basic console. You cannot try complex commands; they are hard to be coded.
+
+**Is PyLinux open-source?**
+
+Yes, PyLinux is open-source on the MIT License. You can fork it as long as you like.
+
+**Can you build PyLinux?**
+
+There is no build script to create PyLinux; but if you want to customize it, you can clone the repository. On Linux, type this: 
+``` bash
+git clone "https://github.com/hirohamada2014/PyLinux.git"
+```
+
+Afterwards, you can edit the source code as long as you like.
+
+On Windows, download the source code zip file from the Releases page, then extract it. You can edit the source code if you like.
 
 
 
