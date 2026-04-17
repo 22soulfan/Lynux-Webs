@@ -87,7 +87,7 @@ No, it is just a basic console. You cannot try complex commands; they are hard t
 
 **Is PyLinux open-source?**
 
-Yes, PyLinux is open-source on the MIT License. You can fork it as long as you like.
+Yes, PyLinux is open-source on the MIT License. You can fork it as long as you like or contribute.
 
 **Can you build PyLinux?**
 
