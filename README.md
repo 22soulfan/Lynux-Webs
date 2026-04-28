@@ -1,29 +1,29 @@
-# PyLinux
-A basic Linux console made entirely with MicroPython
-> Note: PyLinux is still in alpha. Some features are still in development
+# Lynux Webs
+A basic Linux console based on PyLinux.
+> Note: I'm adding feature to PyLinux with this fork so that it can act like an interactive CLI distro.
 
-# What is PyLinux?
+# What is Lynux Webs?
 
-PyLinux is a basic and simulated Linux console based on MicroPython. It is a command-line interface console that can be used on any pc and graphical calculator with python installed.
+Lynux Webs is a basic and simulated Linux console based on MicroPython. It is a command-line interface console that can be used on any pc and graphical calculator with python installed.
 
 # How to install:
 
-To install PyLinux, you need:
+To install Lynux Webs, you need:
 
 - A graphical calculator or computer with Python linux installed (e.g. Casio FX-CG50)
 - Enough storage to install PyLinux
 
-Installing PyLinux is very easy. Download the py. file from the Releases page, then transfer the file to a graphical calculator. Afterwards, open Python there and select PYLINUX.py and voila! You have a Linux console in a calculator!
+Installing Lynux Webs is very easy. Download the py. file from the Releases page, then transfer the file to a graphical calculator. Afterwards, open Python there and select PYLINUX.py and voila! You have a Linux console in a calculator!
 
-# FAQs about PyLinux
+# FAQs about Lynux Webs
 
-**Does PyLinux works on a Casio FX-CG100?**
+**Does Lynux Webs works on a Casio FX-CG100?**
 
 If that calculator model has a Python addin pre-installed, then that's allowed to run PyLinux.
 
-**Can you login any user in PyLinux?**
+**Can you login any user in Lynux Webs?**
 
-Yes of course. You can login lots of accounts. For example, if your name is John, and you type this name in PyLinux login:
+Yes of course. You can login lots of accounts. For example, if your name is John, and you type this name in Lynux Webs login:
 
 ```bash
 
@@ -60,7 +60,7 @@ Login:
 
 Note that if you log out, everything are erased, like a sandbox console.
 
-**What are the list of Linux commands that can be type in PyLinux?**
+**What are the list of Linux commands that can be type in Lynux Webs?**
 
 Here are the commands (arranged from A-Z):
 - about
@@ -73,24 +73,24 @@ Here are the commands (arranged from A-Z):
 - pyfetch
 - questa
 
-**How to create a text file in PyLinux**
+**How to create a text file in Lynux Webs**
 
-On the PyLinux console, type this command (replace filename with custom name):
+On the Lynux Webs console, type this command (replace filename with custom name):
 ``` bash
 nano [filename]
 ```
 On the nano shell, you can create a text file. To save, just click enter.
 
-**Is there an artificial intelligence engine in PyLinux?**
+**Is there an artificial intelligence engine in Lynux Webs?**
 
-Not yet, but there will be a basic chat bot preinstalled in PyLinux which you can type here:
+Not yet, but there will be a basic chat bot preinstalled in Lynux Webs which you can type here:
 ``` bash
 pyai
 ```
 
 **How to install packages?**
 
-To install a package in PyLinux, use this format:
+To install a package in Lynux Webs, use this format:
 
 ``` bash
 bee install <package>
@@ -105,7 +105,7 @@ bee catalog
 
 You may see a few pacakges, depending on which version you have. Since PyLinux is in alpha, you might see 2 or more packages.
 
-**What are the commands of bee in PyLinux?**
+**What are the commands of bee in Lynux Webs?**
 
 Here are the commands for bee:
 
@@ -115,7 +115,7 @@ Here are the commands for bee:
   
 **Can you install a desktop environment?**
 
-No, we don't support these. Since PyLinux is entirely made from MicroPython, you may receive an error message. For example, if you want to install xfce, and you type this:
+No, we don't support these. Since Lynux Webs is entirely made from MicroPython, you may receive an error message. For example, if you want to install xfce, and you type this:
 
 ``` bash
 sudo bee install xfce4
@@ -125,25 +125,25 @@ you would receive this:
 ``` bash
 sudo bee install xfce4: cmd not found
 ```
-That's because desktop environments are made with C++ and other complex programming languages, which PyLinux can't do. If you want a graphical desktop interface, you need to install a real Linux distro instead of PyLinux.
+That's because desktop environments are made with C++ and other complex programming languages, which Lynux Webs can't do. If you want a graphical desktop interface, you need to install a real Linux distro instead of Lynux Webs.
 
-**Is PyLinux like a real Linux console?**
+**Is Lynux Webs like a real Linux console?**
 
 No, it is just a basic console. You cannot try complex commands; they are hard to be coded.
 
-**Is PyLinux open-source?**
+**Is Lynux Webs open-source?**
 
-Yes, PyLinux is open-source on the MIT License. You can fork it as long as you like or contribute.
+Yes, Lynux Webs is open-source on the MIT License. It's a fork of PyLinux.
 
-**Can you run Neofetch on PyLinux?**
+**Can you run Neofetch on Lynux Webs?**
 
-No, you cannot do that. However, PyLinux includes PyFetch which is inspired by Neofetch. To access it, type this:
+No, you cannot do that. However, Lynux Webs includes PyFetch which is inspired by Neofetch. To access it, type this:
 ``` bash
 pyfetch
 ```
-**Can you build PyLinux?**
+**Can you build Lynux Webs?**
 
-There is no build script to create PyLinux; but if you want to customize it, you can clone the repository. On Linux, type this: 
+There is no build script to create Lynux Webs; but if you want to customize it, you can clone the repository. On Linux, type this: 
 ``` bash
 git clone "https://github.com/hirohamada2014/PyLinux.git"
 ```
