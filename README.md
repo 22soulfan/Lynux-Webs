@@ -17,6 +17,10 @@ Installing PyLinux is very easy. Download the py. file from the Releases page, t
 
 # FAQs about PyLinux
 
+**Does PyLinux works on a Casio FX-CG100?**
+
+If that calculator model has a Python addin pre-installed, then that's allowed to run PyLinux.
+
 **Can you login any user in PyLinux?**
 
 Yes of course. You can login lots of accounts. For example, if your name is John, and you type this name in PyLinux login:
@@ -37,7 +41,13 @@ You can login any user (and even fictional characters.) Bear in mind that if you
 ``` bash
 Jonathan@pylinux~
 ```
-Since graphical calculators sometimes have low resolutions, they might see that. To log out a user, simply type this:
+Since graphical calculators sometimes have low resolutions, they might see that. 
+
+If you did not type anything if you see the login screen, it will log in as guest like this:
+``` bash
+guest@pylinux$
+```
+To log out a user (any user and also guest), simply type this:
 
 ``` bash
 logoff
@@ -49,6 +59,34 @@ Login:
 ```
 
 Note that if you log out, everything are erased, like a sandbox console.
+
+**What are the list of Linux commands that can be type in PyLinux?**
+
+Here are the commands (arranged from A-Z):
+- about
+- bee [command]
+- cd [directory]/
+- ls [directory]/
+- logoff
+- nano [filename]
+- pwd
+- pyfetch
+- questa
+
+**How to create a text file in PyLinux**
+
+On the PyLinux console, type this command (replace filename with custom name):
+``` bash
+nano [filename]
+```
+On the nano shell, you can create a text file. To save, just click enter.
+
+**Is there an artificial intelligence engine in PyLinux?**
+
+Not yet, but there will be a basic chat bot preinstalled in PyLinux which you can type here:
+``` bash
+pyai
+```
 
 **How to install packages?**
 
@@ -67,6 +105,14 @@ bee catalog
 
 You may see a few pacakges, depending on which version you have. Since PyLinux is in alpha, you might see 2 or more packages.
 
+**What are the commands of bee in PyLinux?**
+
+Here are the commands for bee:
+
+- catalog
+- install
+- purge
+  
 **Can you install a desktop environment?**
 
 No, we don't support these. Since PyLinux is entirely made from MicroPython, you may receive an error message. For example, if you want to install xfce, and you type this:
@@ -89,6 +135,12 @@ No, it is just a basic console. You cannot try complex commands; they are hard t
 
 Yes, PyLinux is open-source on the MIT License. You can fork it as long as you like or contribute.
 
+**Can you run Neofetch on PyLinux?**
+
+No, you cannot do that. However, PyLinux includes PyFetch which is inspired by Neofetch. To access it, type this:
+``` bash
+pyfetch
+```
 **Can you build PyLinux?**
 
 There is no build script to create PyLinux; but if you want to customize it, you can clone the repository. On Linux, type this: 
