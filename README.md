@@ -1,4 +1,7 @@
 # Lynux Webs
+
+> In a few years, Lynux Webs will evolve into a real Linux distro based on Arch Linux and giving a Dreamworks inspired workspace similar to WhiryOS which provides Pixar. For more info, check https://github.com/22soulfan/WhirlyOS.
+
 A basic Linux console based on PyLinux.
 > Note: I'm adding feature to PyLinux with this fork so that it can act like an interactive CLI distro.
 
