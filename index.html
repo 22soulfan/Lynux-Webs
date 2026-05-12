@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynux Webs | Dreamworks CLI & Linux</title>
+    <title>Lynux Webs | Dreamworks Arch Linux</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
 
@@ -18,10 +18,7 @@
             --terminal-green: #10b981;
         }
 
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -29,338 +26,157 @@
             color: var(--text);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* SPA Navigation Logic */
+        section { display: none; padding: 8rem 2rem 4rem; min-height: 100vh; }
+        section:target { display: block; } /* Shows section when URL matches #id */
+        #home { display: block; } /* Default page */
+        :target ~ #home { display: none; } /* Hide home when another is active */
+
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid #27272a;
+            position: fixed; top: 0; width: 100%;
+            background: var(--nav-bg); backdrop-filter: blur(12px);
+            z-index: 1000; border-bottom: 1px solid #27272a;
         }
 
         .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 2rem;
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 0.8rem 2rem;
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--primary);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
+        .logo { font-weight: 800; color: var(--primary); text-decoration: none; text-transform: uppercase; }
 
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        .container { max-width: 1000px; margin: 0 auto; }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        /* Typography */
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin: 0; font-weight: 800; text-align: center; }
+        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 2rem; }
 
-        /* Hero */
-        header {
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            background: radial-gradient(circle at 50% -20%, #441111 0%, var(--bg) 60%);
-        }
+        /* Table Styling */
+        .table-container { overflow-x: auto; margin-top: 2rem; border-radius: 12px; border: 1px solid #27272a; }
+        table { width: 100%; border-collapse: collapse; background: var(--card-bg); text-align: left; }
+        th, td { padding: 1rem; border-bottom: 1px solid #27272a; }
+        th { background: #1c1c1e; color: var(--secondary); text-transform: uppercase; font-size: 0.8rem; }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin: 0;
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
+        /* Components */
+        .terminal { font-family: 'Fira Code', monospace; background: #000; padding: 1.2rem; border-radius: 8px; color: var(--terminal-green); border: 1px solid #27272a; margin: 1rem 0; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600; background: var(--primary); color: white; transition: 0.2s; }
+        .btn-github { background: #27272a; border: 1px solid #3f3f46; margin-top: 20px; }
 
-        .hero p {
-            color: var(--text-dim);
-            max-width: 700px;
-            margin: 1.5rem auto;
-            font-size: 1.25rem;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-github {
-            background: #27272a;
-            color: white;
-            border: 1px solid #3f3f46;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
-        /* Content Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            margin-bottom: 8rem;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        /* Instructions Styling */
-        .instruction-step {
-            background: var(--card-bg);
-            border: 1px solid #27272a;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-number {
-            color: var(--secondary);
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .terminal {
-            font-family: 'Fira Code', monospace;
-            background: #000;
-            padding: 1.2rem;
-            border-radius: 8px;
-            border: 1px solid #27272a;
-            color: var(--terminal-green);
-            font-size: 0.85rem;
-            margin: 1rem 0;
-            position: relative;
-        }
-
-        .terminal::before {
-            content: "Terminal Output";
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background: var(--bg);
-            padding: 0 5px;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-        }
-
-        /* Grid Layouts */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #27272a;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 6rem 2rem;
-            border-top: 1px solid #27272a;
-            color: var(--text-dim);
-        }
-
-        /* Sister Projects Row */
-        .sister-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .sister-link {
-            padding: 0.5rem 1rem;
-            background: #1a1a1c;
-            border: 1px solid #27272a;
-            border-radius: 20px;
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .sister-link:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
+        .instruction-card { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid #27272a; margin-bottom: 1.5rem; }
+        
+        footer { text-align: center; padding: 4rem; border-top: 1px solid #27272a; color: var(--text-dim); }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">LYNUX <span>WEBS</span></a>
+            <a href="#home" class="logo">LYNUX WEBS</a>
             <div class="nav-links">
-                <a href="#how-to-use">Instructions</a>
-                <a href="#features">Features</a>
+                <a href="#home">Home</a>
+                <a href="#instructions">Instructions</a>
+                <a href="#editions">Editions</a>
                 <a href="#sister-projects">Sister Projects</a>
-                <a href="#roadmap">Roadmap</a>
             </div>
         </div>
     </nav>
 
-    <header id="home">
-        <div class="hero">
+    <section id="home">
+        <div class="container">
             <h1>Dreamworks Redefined.</h1>
-            <p>Evolving from a MicroPython console to a powerful Dreamworks-inspired Linux distribution. Lightweight, interactive, and built for creators.</p>
-            <div class="cta-group">
-                <a href="#how-to-use" class="btn btn-primary">How to Use</a>
+            <p style="text-align: center; color: var(--text-dim); font-size: 1.2rem;">Forked in early 2026 from PyLinux, Lynux Webs is the bridge between calculator simulations and the Arch Linux future.</p>
+            <center>
                 <a href="https://github.com/22soulfan/Lynux-Webs" class="btn btn-github">
                     <svg height="20" width="20" viewBox="0 0 16 16" fill="white"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                     GitHub Repository
                 </a>
+            </center>
+        </div>
+    </section>
+
+    <section id="instructions">
+        <div class="container">
+            <h2>How to use Lynux Webs</h2>
+            <div class="instruction-card">
+                <h3>1. Installation</h3>
+                <p>Clone the fork to your local machine or calculator environment:</p>
+                <div class="terminal">git clone "https://github.com/22soulfan/Lynux-Webs.git"</div>
+            </div>
+            <div class="instruction-card">
+                <h3>2. Execution</h3>
+                <p>Run <code>PYLINUX.py</code> via a Python interpreter. On Casio calculators, use the Python add-in.</p>
+            </div>
+            <div class="instruction-card">
+                <h3>3. The CLI</h3>
+                <p>Log in as your favorite character or as guest. Use <code>bee catalog</code> to check for packages.</p>
             </div>
         </div>
-    </header>
+    </section>
 
-    <div class="container">
-        
-        <section id="how-to-use">
-            <h2>How to Use Lynux Webs</h2>
-            
-            <div class="instruction-step">
-                <span class="step-number">Step 01</span>
-                <h3>Clone the Project</h3>
-                <p>Download the latest source code from our repository to your PC or development environment.</p>
-                <div class="terminal">
-                    git clone "https://github.com/22soulfan/Lynux-Webs.git"<br>
-                    cd Lynux-Webs
-                </div>
+    <section id="editions">
+        <div class="container">
+            <h2>Future Arch Linux Editions</h2>
+            <p>Targeting late 2026 / 2027 releases.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Edition Name</th>
+                            <th>Desktop Environment</th>
+                            <th>Inspiration</th>
+                            <th>Min. Specs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>WebsCore</b></td>
+                            <td>GNOME</td>
+                            <td>The Bad Guys</td>
+                            <td>2 GB RAM / 15 GB Disk</td>
+                        </tr>
+                        <tr>
+                            <td><b>PandaShell</b></td>
+                            <td>XFCE</td>
+                            <td>Kung Fu Panda</td>
+                            <td>1 GB RAM / 8 GB Disk</td>
+                        </tr>
+                        <tr>
+                            <td><b>KrakenStation</b></td>
+                            <td>KDE Plasma</td>
+                            <td>Ruby Gillman</td>
+                            <td>4 GB RAM / 20 GB Disk</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </section>
 
-            <div class="instruction-step">
-                <span class="step-number">Step 02</span>
-                <h3>Transfer to Hardware</h3>
-                <p>For graphical calculators (e.g., Casio FX-CG50), transfer the <code>PYLINUX.py</code> file and associated folders to your device storage via USB.</p>
+    <section id="sister-projects">
+        <div class="container">
+            <h2>The Project Multiverse</h2>
+            <div class="instruction-card">
+                <h3>WhirlyOS</h3>
+                <p>Pixar-inspired Debian Linux Distro. <a href="https://22soulfan.github.io/WhirlyOS" style="color:var(--primary)">Visit Site</a></p>
             </div>
-
-            <div class="instruction-step">
-                <span class="step-number">Step 03</span>
-                <h3>Initial Boot</h3>
-                <p>Run the main script. When prompted, enter a username to log in. Leaving it blank will log you in as <code>guest</code>.</p>
-                <div class="terminal">
-                    Login: MsTarantula<br>
-                    MsTarantula@pylinux$ _
-                </div>
+            <div class="instruction-card">
+                <h3>Octopus11</h3>
+                <p>Ruby Gillman themed Windows 11 modification.</p>
             </div>
+        </div>
+    </section>
 
-            <div class="instruction-step">
-                <span class="step-number">Step 04</span>
-                <h3>Explore Commands</h3>
-                <p>Use standard Linux-inspired commands to navigate the simulation:</p>
-                <ul>
-                    <li><code>ls</code> - List directories</li>
-                    <li><code>pyfetch</code> - View system specs</li>
-                    <li><code>bee catalog</code> - Check available packages</li>
-                    <li><code>nano [filename]</code> - Create or edit a text file</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="features">
-            <h2>Core Systems</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Bee Installer</h3>
-                    <p>Modular package management for MicroPython. Install local features and character modules with a single command.</p>
-                </div>
-                <div class="card">
-                    <h3>Questa Storage</h3>
-                    <p>A virtualized file system handling everything from system logs to Movie Character (<code>.mchar</code>) data.</p>
-                </div>
-                <div class="card">
-                    <h3>Interactive AI</h3>
-                    <p>The <code>pyai</code> system provides a lightweight chatbot experience directly in the CLI (experimental).</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="sister-projects">
-            <h2>Sister Projects</h2>
-            <div class="sister-row">
-                <a href="https://22soulfan.github.io/WhirlyOS" class="sister-link">WhirlyOS (Pixar)</a>
-                <a href="#" class="sister-link">Octopus11 (Ruby Gillman)</a>
-                <a href="#" class="sister-link">OpenMyriad (Soul)</a>
-            </div>
-        </section>
-
-        <section id="roadmap">
-            <h2>Roadmap to Arch Linux</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Alpha Phase</h3>
-                    <p>Current MicroPython interactive CLI and simulated environment.</p>
-                </div>
-                <div class="card">
-                    <h3>Beta Transition</h3>
-                    <p>Moving logic to Debian build scripts to test the Dreamworks Workspace.</p>
-                </div>
-                <div class="card">
-                    <h3>Final Form</h3>
-                    <p>A full Arch Linux distribution with native ARM/amd64 support and cinematic UI.</p>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2026 Lynux Webs. Licensed under MIT.</p>
-        <p><i>Find your spark. Find your way.</i></p>
-    </div>
+    <footer>
+        <p>Lynux Webs | Forked from hirohamada2014/PyLinux (2026)</p>
+    </footer>
 
 </body>
 </html>
