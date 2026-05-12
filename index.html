@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lynux Webs | Dreamworks Arch Linux</title>
+    <!-- Use standard CSS for maximum compatibility with older browsers/devices -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
-
+        /* Legacy-friendly variables and fallbacks */
         :root {
             --primary: #FF4444;
             --secondary: #FF8800;
@@ -14,76 +14,74 @@
             --card-bg: #161618;
             --text: #F0F0F0;
             --text-dim: #A1A1AA;
-            --nav-bg: rgba(10, 10, 11, 0.95);
-            --terminal-green: #10b981;
             --border: #27272a;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif; /* Fallback for older devices */
+            background-color: #0A0A0B; /* Hex fallback */
+            color: #F0F0F0;
             margin: 0;
-            line-height: 1.6;
+            padding: 0;
+            line-height: 1.5;
         }
 
-        /* SPA Logic */
-        section { display: none; padding: 6rem 2rem; min-height: 100vh; animation: fadeIn 0.3s ease; }
-        section:target { display: block; }
-        #home { display: block; }
+        /* Logic to hide/show sections based on URL Hash */
+        section { display: none; padding: 80px 20px 40px; min-height: 100vh; }
+        
+        /* The CSS :target pseudo-class handles the "Single Page" navigation */
+        #home:target, #commands:target, #packages:target, #editions:target, #faqs:target { display: block; }
+        
+        /* If no hash is present, show Home by default */
+        #home { display: block; } 
+        /* Hide home if any other section is active */
         :target ~ #home { display: none; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Nav */
+        /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: var(--nav-bg); backdrop-filter: blur(12px);
-            z-index: 1000; border-bottom: 1px solid var(--border);
+            background: #0A0A0B; border-bottom: 1px solid #27272a;
+            z-index: 1000;
         }
 
         .nav-container {
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1100px; margin: 0 auto;
             display: flex; justify-content: space-between;
-            align-items: center; padding: 0.8rem 2rem;
+            align-items: center; padding: 10px 20px;
         }
 
-        .logo { font-weight: 800; color: var(--primary); text-decoration: none; text-transform: uppercase; }
+        .logo { font-weight: bold; color: #FF4444; text-decoration: none; text-transform: uppercase; }
 
-        .nav-links { display: flex; gap: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; font-weight: 500; transition: 0.2s; }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a {
+            text-decoration: none; color: #A1A1AA;
+            font-size: 14px; margin-left: 15px;
+            transition: 0.2s;
+        }
 
-        .container { max-width: 1000px; margin: 0 auto; }
+        .nav-links a:hover { color: #FF4444; }
 
-        /* Typography */
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; text-align: center; margin-top: 4rem; }
-        h2 { font-size: 2rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-top: 3rem; }
-        h3 { color: var(--secondary); margin-top: 1.5rem; }
+        .container { max-width: 900px; margin: 0 auto; }
 
-        /* UI Elements */
-        .card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1.5rem; }
-        .terminal { font-family: 'Fira Code', monospace; background: #000; padding: 1rem; border-radius: 8px; color: var(--terminal-green); border: 1px solid var(--border); overflow-x: auto; }
+        /* Tables & Cards */
+        .card { background: #161618; padding: 20px; border-radius: 8px; border: 1px solid #27272a; margin-bottom: 20px; }
+        .terminal { font-family: 'Courier New', Courier, monospace; background: #000; padding: 15px; border-radius: 5px; color: #10b981; border: 1px solid #27272a; overflow-x: auto; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #161618; }
+        th, td { padding: 12px; border: 1px solid #27272a; text-align: left; }
+        th { background: #1c1c1e; color: #FF8800; font-size: 12px; text-transform: uppercase; }
+
+        /* FAQ Styling */
+        .faq-q { font-weight: bold; color: #FFF; display: block; margin-bottom: 5px; }
+        .faq-a { color: #A1A1AA; display: block; margin-bottom: 20px; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #27272a; color: #A1A1AA; font-size: 12px; }
+
+        /* Button */
+        .btn { display: inline-block; background: #FF4444; color: #FFF; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-
-        .table-container { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin: 1.5rem 0; }
-        table { width: 100%; border-collapse: collapse; background: var(--card-bg); text-align: left; }
-        th, td { padding: 1rem; border-bottom: 1px solid var(--border); }
-        th { background: #1c1c1e; color: var(--secondary); font-size: 0.8rem; text-transform: uppercase; }
-
-        .faq-item { margin-bottom: 2rem; }
-        .faq-q { font-weight: 600; color: #fff; display: block; margin-bottom: 0.5rem; }
-        .faq-a { color: var(--text-dim); }
-
-        .badge { background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; color: #eee; }
-
-        footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
-        
-        .btn { display: inline-block; background: var(--primary); color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; }
-        .btn-github { background: #27272a; border: 1px solid #3f3f46; margin: 10px; }
+        /* Modern-to-Legacy Compatibility classes */
+        .theme-modern { border-left: 4px solid #FF4444; }
+        .theme-classic { border: 2px solid #555; }
     </style>
 </head>
 <body>
@@ -101,123 +99,94 @@
         </div>
     </nav>
 
-    <!-- PAGE: HOME -->
-    <section id="home">
-        <div class="container">
-            <h1>Dreamworks Redefined.</h1>
-            <p style="text-align: center; color: var(--text-dim); font-size: 1.2rem;">A simulated Linux console for MicroPython, evolving into a real Arch Linux distribution. Forked in early 2026.</p>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://github.com/22soulfan/Lynux-Webs" class="btn btn-github">GitHub Repo</a>
-                <a href="#commands" class="btn">Get Started</a>
+    <!-- DEFAULT PAGE (HOME) -->
+    <div id="home-wrapper"> <!-- Wrapper to help control home visibility -->
+        <section id="home">
+            <div class="container">
+                <h1 style="text-align:center; font-size: 40px;">Dreamworks Redefined.</h1>
+                <p style="text-align:center; color:#A1A1AA;">Forked in 2026 by hirohamada2014 / 22soulfan. <br> A MicroPython console evolving into Arch Linux.</p>
+                <div style="text-align:center; margin-top:20px;">
+                    <a href="https://github.com/22soulfan/Lynux-Webs" class="btn">GitHub Repository</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- PAGE: COMMANDS -->
+    <!-- COMMANDS SECTION -->
     <section id="commands">
         <div class="container">
-            <h2>Lynux Webs (PyLinux) Commands</h2>
-            <p>Essential commands for the simulated MicroPython environment.</p>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Command</th><th>Description</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><code>about</code></td><td>Displays details about Lynux Webs.</td></tr>
-                        <tr><td><code>bee [cmd]</code></td><td>Package manager (catalog, install, purge).</td></tr>
-                        <tr><td><code>cd [dir]</code></td><td>Change directory (use / at end).</td></tr>
-                        <tr><td><code>ls [dir]</code></td><td>List files in a directory.</td></tr>
-                        <tr><td><code>logoff</code></td><td>Logs out user and wipes sandbox session.</td></tr>
-                        <tr><td><code>nano [file]</code></td><td>Basic text editor shell.</td></tr>
-                        <tr><td><code>pwd</code></td><td>Print working directory.</td></tr>
-                        <tr><td><code>pyfetch</code></td><td>System information fetcher.</td></tr>
-                        <tr><td><code>questa</code></td><td>Access virtualized storage system.</td></tr>
-                        <tr><td><code>pyai</code></td><td>Launch the experimental chatbot.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <h3>Example Usage</h3>
-            <div class="terminal">
-                MsTarantula@pylinux$ nano notes.txt<br>
-                # Type content, press enter to save<br>
-                MsTarantula@pylinux$ ls /
-            </div>
+            <h2 style="color:#FF4444;">PyLinux Commands</h2>
+            <table>
+                <thead>
+                    <tr><th>Command</th><th>Usage</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>about</code></td><td>System Info</td></tr>
+                    <tr><td><code>bee [cmd]</code></td><td>Package Manager</td></tr>
+                    <tr><td><code>cd [dir]/</code></td><td>Navigate (needs /)</td></tr>
+                    <tr><td><code>ls [dir]/</code></td><td>List files</td></tr>
+                    <tr><td><code>logoff</code></td><td>Logout & Wipe</td></tr>
+                    <tr><td><code>nano [file]</code></td><td>Text Editor</td></tr>
+                    <tr><td><code>pyfetch</code></td><td>System Fetch</td></tr>
+                    <tr><td><code>pyai</code></td><td>Chatbot</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- PAGE: PACKAGES -->
+    <!-- PACKAGES SECTION -->
     <section id="packages">
         <div class="container">
-            <h2>The Bee Package System</h2>
-            <p>Lynux Webs uses the <b>Bee</b> installer for local package management.</p>
-            <div class="grid">
-                <div class="card">
-                    <h3>Questa <span class="badge">Preinstalled</span></h3>
-                    <p>Handles virtual storage logic for characters and files.</p>
-                </div>
-                <div class="card">
-                    <h3>PyAI <span class="badge">Experimental</span></h3>
-                    <p>Basic chatbot engine for interactive terminal sessions.</p>
-                </div>
-                <div class="card">
-                    <h3>Panda-Tools <span class="badge">Optional</span></h3>
-                    <p>Utilities for managing .mchar and .pdoc files.</p>
-                </div>
+            <h2 style="color:#FF4444;">Bee Packages</h2>
+            <div class="card theme-modern">
+                <h3>Questa</h3>
+                <p>Virtual storage for movie character data (.mchar).</p>
             </div>
-            <div class="terminal">
-                $ bee catalog<br>
-                Available: questa, pyai, panda-tools<br>
-                $ bee install pyai
+            <div class="card theme-modern">
+                <h3>PyAI</h3>
+                <p>Interactive CLI chatbot for MicroPython.</p>
             </div>
         </div>
     </section>
 
-    <!-- PAGE: EDITIONS -->
+    <!-- EDITIONS SECTION -->
     <section id="editions">
         <div class="container">
-            <h2>Arch Linux Desktop Editions</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Edition</th><th>Environment</th><th>Inspiration</th><th>Min. Specs</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><b>WebsCore</b></td><td>GNOME</td><td>The Bad Guys</td><td>2GB RAM / 15GB Disk</td></tr>
-                        <tr><td><b>PandaShell</b></td><td>XFCE</td><td>Kung Fu Panda</td><td>1GB RAM / 8GB Disk</td></tr>
-                        <tr><td><b>KrakenStation</b></td><td>KDE</td><td>Ruby Gillman</td><td>4GB RAM / 20GB Disk</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <h2 style="color:#FF4444;">Arch Desktop Editions</h2>
+            <table>
+                <thead>
+                    <tr><th>Edition</th><th>Environment</th><th>Specs</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>WebsCore</td><td>GNOME</td><td>2GB RAM</td></tr>
+                    <tr><td>PandaShell</td><td>XFCE</td><td>1GB RAM</td></tr>
+                    <tr><td>KrakenStation</td><td>KDE</td><td>4GB RAM</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- PAGE: FAQS -->
+    <!-- FAQ SECTION -->
     <section id="faqs">
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
+            <h2 style="color:#FF4444;">Official FAQs</h2>
             <div class="faq-item">
-                <span class="faq-q">Does it work on Casio FX-CG100?</span>
-                <span class="faq-a">Yes, if it has the Python add-in pre-installed.</span>
+                <span class="faq-q">Who is the developer?</span>
+                <span class="faq-a">The project is developed by 22soulfan (formerly hirohamada2014).</span>
             </div>
             <div class="faq-item">
-                <span class="faq-q">Can I install XFCE or GNOME on the MicroPython version?</span>
-                <span class="faq-a">No. Graphical Desktop Environments require the real Arch Linux base planned for the future.</span>
+                <span class="faq-q">Does it work on calculators?</span>
+                <span class="faq-a">Yes, Casio FX-CG series with Python add-ins are supported.</span>
             </div>
             <div class="faq-item">
-                <span class="faq-q">What happens if I logoff?</span>
-                <span class="faq-a">All sandbox session data is erased for security and storage efficiency.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Is it open source?</span>
-                <span class="faq-a">Yes, licensed under MIT and forked from hirohamada2014/PyLinux.</span>
+                <span class="faq-q">Is this a real Linux?</span>
+                <span class="faq-a">Currently it is a simulation. The Arch-based version is in development for late 2026.</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Lynux Webs | Fork of PyLinux (Est. Early 2026)</p>
-        <p><i>Find your spark. Find your way.</i></p>
+        <p>&copy; 2026 Lynux Webs Project. MIT License.</p>
     </footer>
 
 </body>
