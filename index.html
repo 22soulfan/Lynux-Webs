@@ -14,11 +14,12 @@
             --card-bg: #161618;
             --text: #F0F0F0;
             --text-dim: #A1A1AA;
-            --nav-bg: rgba(10, 10, 11, 0.9);
+            --nav-bg: rgba(10, 10, 11, 0.95);
             --terminal-green: #10b981;
+            --border: #27272a;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -26,53 +27,63 @@
             color: var(--text);
             margin: 0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* SPA Navigation Logic */
-        section { display: none; padding: 8rem 2rem 4rem; min-height: 100vh; }
-        section:target { display: block; } /* Shows section when URL matches #id */
-        #home { display: block; } /* Default page */
-        :target ~ #home { display: none; } /* Hide home when another is active */
+        /* SPA Logic */
+        section { display: none; padding: 6rem 2rem; min-height: 100vh; animation: fadeIn 0.3s ease; }
+        section:target { display: block; }
+        #home { display: block; }
+        :target ~ #home { display: none; }
 
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Nav */
         nav {
             position: fixed; top: 0; width: 100%;
             background: var(--nav-bg); backdrop-filter: blur(12px);
-            z-index: 1000; border-bottom: 1px solid #27272a;
+            z-index: 1000; border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
-            max-width: 1100px; margin: 0 auto;
+            max-width: 1200px; margin: 0 auto;
             display: flex; justify-content: space-between;
             align-items: center; padding: 0.8rem 2rem;
         }
 
         .logo { font-weight: 800; color: var(--primary); text-decoration: none; text-transform: uppercase; }
 
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links { display: flex; gap: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; font-weight: 500; transition: 0.2s; }
         .nav-links a:hover { color: var(--primary); }
 
         .container { max-width: 1000px; margin: 0 auto; }
 
         /* Typography */
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin: 0; font-weight: 800; text-align: center; }
-        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 2rem; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; text-align: center; margin-top: 4rem; }
+        h2 { font-size: 2rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-top: 3rem; }
+        h3 { color: var(--secondary); margin-top: 1.5rem; }
 
-        /* Table Styling */
-        .table-container { overflow-x: auto; margin-top: 2rem; border-radius: 12px; border: 1px solid #27272a; }
-        table { width: 100%; border-collapse: collapse; background: var(--card-bg); text-align: left; }
-        th, td { padding: 1rem; border-bottom: 1px solid #27272a; }
-        th { background: #1c1c1e; color: var(--secondary); text-transform: uppercase; font-size: 0.8rem; }
-
-        /* Components */
-        .terminal { font-family: 'Fira Code', monospace; background: #000; padding: 1.2rem; border-radius: 8px; color: var(--terminal-green); border: 1px solid #27272a; margin: 1rem 0; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600; background: var(--primary); color: white; transition: 0.2s; }
-        .btn-github { background: #27272a; border: 1px solid #3f3f46; margin-top: 20px; }
-
-        .instruction-card { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid #27272a; margin-bottom: 1.5rem; }
+        /* UI Elements */
+        .card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+        .terminal { font-family: 'Fira Code', monospace; background: #000; padding: 1rem; border-radius: 8px; color: var(--terminal-green); border: 1px solid var(--border); overflow-x: auto; }
         
-        footer { text-align: center; padding: 4rem; border-top: 1px solid #27272a; color: var(--text-dim); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+
+        .table-container { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin: 1.5rem 0; }
+        table { width: 100%; border-collapse: collapse; background: var(--card-bg); text-align: left; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border); }
+        th { background: #1c1c1e; color: var(--secondary); font-size: 0.8rem; text-transform: uppercase; }
+
+        .faq-item { margin-bottom: 2rem; }
+        .faq-q { font-weight: 600; color: #fff; display: block; margin-bottom: 0.5rem; }
+        .faq-a { color: var(--text-dim); }
+
+        .badge { background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; color: #eee; }
+
+        footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
+        
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; }
+        .btn-github { background: #27272a; border: 1px solid #3f3f46; margin: 10px; }
     </style>
 </head>
 <body>
@@ -82,100 +93,131 @@
             <a href="#home" class="logo">LYNUX WEBS</a>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#instructions">Instructions</a>
+                <a href="#commands">Commands</a>
+                <a href="#packages">Packages</a>
                 <a href="#editions">Editions</a>
-                <a href="#sister-projects">Sister Projects</a>
+                <a href="#faqs">FAQs</a>
             </div>
         </div>
     </nav>
 
+    <!-- PAGE: HOME -->
     <section id="home">
         <div class="container">
             <h1>Dreamworks Redefined.</h1>
-            <p style="text-align: center; color: var(--text-dim); font-size: 1.2rem;">Forked in early 2026 from PyLinux, Lynux Webs is the bridge between calculator simulations and the Arch Linux future.</p>
-            <center>
-                <a href="https://github.com/22soulfan/Lynux-Webs" class="btn btn-github">
-                    <svg height="20" width="20" viewBox="0 0 16 16" fill="white"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                    GitHub Repository
-                </a>
-            </center>
-        </div>
-    </section>
-
-    <section id="instructions">
-        <div class="container">
-            <h2>How to use Lynux Webs</h2>
-            <div class="instruction-card">
-                <h3>1. Installation</h3>
-                <p>Clone the fork to your local machine or calculator environment:</p>
-                <div class="terminal">git clone "https://github.com/22soulfan/Lynux-Webs.git"</div>
-            </div>
-            <div class="instruction-card">
-                <h3>2. Execution</h3>
-                <p>Run <code>PYLINUX.py</code> via a Python interpreter. On Casio calculators, use the Python add-in.</p>
-            </div>
-            <div class="instruction-card">
-                <h3>3. The CLI</h3>
-                <p>Log in as your favorite character or as guest. Use <code>bee catalog</code> to check for packages.</p>
+            <p style="text-align: center; color: var(--text-dim); font-size: 1.2rem;">A simulated Linux console for MicroPython, evolving into a real Arch Linux distribution. Forked in early 2026.</p>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://github.com/22soulfan/Lynux-Webs" class="btn btn-github">GitHub Repo</a>
+                <a href="#commands" class="btn">Get Started</a>
             </div>
         </div>
     </section>
 
-    <section id="editions">
+    <!-- PAGE: COMMANDS -->
+    <section id="commands">
         <div class="container">
-            <h2>Future Arch Linux Editions</h2>
-            <p>Targeting late 2026 / 2027 releases.</p>
+            <h2>Lynux Webs (PyLinux) Commands</h2>
+            <p>Essential commands for the simulated MicroPython environment.</p>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Edition Name</th>
-                            <th>Desktop Environment</th>
-                            <th>Inspiration</th>
-                            <th>Min. Specs</th>
-                        </tr>
+                        <tr><th>Command</th><th>Description</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><b>WebsCore</b></td>
-                            <td>GNOME</td>
-                            <td>The Bad Guys</td>
-                            <td>2 GB RAM / 15 GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td><b>PandaShell</b></td>
-                            <td>XFCE</td>
-                            <td>Kung Fu Panda</td>
-                            <td>1 GB RAM / 8 GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td><b>KrakenStation</b></td>
-                            <td>KDE Plasma</td>
-                            <td>Ruby Gillman</td>
-                            <td>4 GB RAM / 20 GB Disk</td>
-                        </tr>
+                        <tr><td><code>about</code></td><td>Displays details about Lynux Webs.</td></tr>
+                        <tr><td><code>bee [cmd]</code></td><td>Package manager (catalog, install, purge).</td></tr>
+                        <tr><td><code>cd [dir]</code></td><td>Change directory (use / at end).</td></tr>
+                        <tr><td><code>ls [dir]</code></td><td>List files in a directory.</td></tr>
+                        <tr><td><code>logoff</code></td><td>Logs out user and wipes sandbox session.</td></tr>
+                        <tr><td><code>nano [file]</code></td><td>Basic text editor shell.</td></tr>
+                        <tr><td><code>pwd</code></td><td>Print working directory.</td></tr>
+                        <tr><td><code>pyfetch</code></td><td>System information fetcher.</td></tr>
+                        <tr><td><code>questa</code></td><td>Access virtualized storage system.</td></tr>
+                        <tr><td><code>pyai</code></td><td>Launch the experimental chatbot.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Example Usage</h3>
+            <div class="terminal">
+                MsTarantula@pylinux$ nano notes.txt<br>
+                # Type content, press enter to save<br>
+                MsTarantula@pylinux$ ls /
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: PACKAGES -->
+    <section id="packages">
+        <div class="container">
+            <h2>The Bee Package System</h2>
+            <p>Lynux Webs uses the <b>Bee</b> installer for local package management.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Questa <span class="badge">Preinstalled</span></h3>
+                    <p>Handles virtual storage logic for characters and files.</p>
+                </div>
+                <div class="card">
+                    <h3>PyAI <span class="badge">Experimental</span></h3>
+                    <p>Basic chatbot engine for interactive terminal sessions.</p>
+                </div>
+                <div class="card">
+                    <h3>Panda-Tools <span class="badge">Optional</span></h3>
+                    <p>Utilities for managing .mchar and .pdoc files.</p>
+                </div>
+            </div>
+            <div class="terminal">
+                $ bee catalog<br>
+                Available: questa, pyai, panda-tools<br>
+                $ bee install pyai
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: EDITIONS -->
+    <section id="editions">
+        <div class="container">
+            <h2>Arch Linux Desktop Editions</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Edition</th><th>Environment</th><th>Inspiration</th><th>Min. Specs</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>WebsCore</b></td><td>GNOME</td><td>The Bad Guys</td><td>2GB RAM / 15GB Disk</td></tr>
+                        <tr><td><b>PandaShell</b></td><td>XFCE</td><td>Kung Fu Panda</td><td>1GB RAM / 8GB Disk</td></tr>
+                        <tr><td><b>KrakenStation</b></td><td>KDE</td><td>Ruby Gillman</td><td>4GB RAM / 20GB Disk</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
-    <section id="sister-projects">
+    <!-- PAGE: FAQS -->
+    <section id="faqs">
         <div class="container">
-            <h2>The Project Multiverse</h2>
-            <div class="instruction-card">
-                <h3>WhirlyOS</h3>
-                <p>Pixar-inspired Debian Linux Distro. <a href="https://22soulfan.github.io/WhirlyOS" style="color:var(--primary)">Visit Site</a></p>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <span class="faq-q">Does it work on Casio FX-CG100?</span>
+                <span class="faq-a">Yes, if it has the Python add-in pre-installed.</span>
             </div>
-            <div class="instruction-card">
-                <h3>Octopus11</h3>
-                <p>Ruby Gillman themed Windows 11 modification.</p>
+            <div class="faq-item">
+                <span class="faq-q">Can I install XFCE or GNOME on the MicroPython version?</span>
+                <span class="faq-a">No. Graphical Desktop Environments require the real Arch Linux base planned for the future.</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">What happens if I logoff?</span>
+                <span class="faq-a">All sandbox session data is erased for security and storage efficiency.</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Is it open source?</span>
+                <span class="faq-a">Yes, licensed under MIT and forked from hirohamada2014/PyLinux.</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Lynux Webs | Forked from hirohamada2014/PyLinux (2026)</p>
+        <p>Lynux Webs | Fork of PyLinux (Est. Early 2026)</p>
+        <p><i>Find your spark. Find your way.</i></p>
     </footer>
 
 </body>
