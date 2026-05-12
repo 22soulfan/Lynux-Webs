@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynux Webs | The Future of Dreamworks-Inspired Linux</title>
+    <style>
+        :root {
+            --primary-red: #d32f2f;
+            --accent-orange: #ff9800;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --terminal-green: #4af626;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            border-left: 5px solid var(--accent-orange);
+            padding-left: 1rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-orange);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-red);
+        }
+
+        .terminal-box {
+            background: #000;
+            color: var(--terminal-green);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border: 1px solid #333;
+        }
+
+        .roadmap-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+            border-left: 2px dashed #444;
+        }
+
+        .roadmap-item::before {
+            content: '●';
+            position: absolute;
+            left: -8px;
+            color: var(--accent-orange);
+            background: var(--dark-bg);
+        }
+
+        .badge {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+
+        .movie-list {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="hero">
+        <h1>LYNUX WEBS</h1>
+        <p>A Dreamworks-Inspired Linux Journey | Forked from PyLinux</p>
+    </div>
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">What is Lynux Webs?</h2>
+        <p>Lynux Webs is a specialized, simulated Linux console based on MicroPython, currently designed for graphical calculators and PCs. It provides a unique interactive CLI environment tailored for the Dreamworks enthusiast.</p>
+        <div class="terminal-box">
+            Login: MsTarantula<br>
+            MsTarantula@pylinux$ _
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Core Features</h2>
+        <div class="features-grid">
+            <div class="card">
+                <h3>Bee Package Manager</h3>
+                <p>The <code>bee</code> installer manages local packages. Use <code>bee catalog</code> to explore available software modules.</p>
+            </div>
+            <div class="card">
+                <h3>Questa Virtual Storage</h3>
+                <p>An integrated storage system designed to manage files, character data, and logs across restricted hardware environments.</p>
+            </div>
+            <div class="card">
+                <h3>PyFetch</h3>
+                <p>A MicroPython-optimized system information tool inspired by Neofetch, displaying your system specs in style.</p>
+            </div>
+            <div class="card">
+                <h3>Calculator Compatibility</h3>
+                <p>Optimized for Casio FX-CG50 and similar graphical calculators with Python support.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">The Cinematic Inspiration</h2>
+        <p>Lynux Webs celebrates the spirit of Dreamworks Animation. Key themes include:</p>
+        <ul>
+            <li class="movie-list">The Bad Guys (Project Identity & Ms. Tarantula)</li>
+            <li class="movie-list">Kung Fu Panda</li>
+            <li class="movie-list">Ruby Gillman, Teenage Kraken</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">Future Roadmap</h2>
+        <div class="roadmap-list">
+            <div class="roadmap-item">
+                <strong>Phase 1: The Interactive CLI <span class="badge">Current</span></strong>
+                <p>Enhancing PyLinux features, adding the <code>pyai</code> chatbot, and refining the "Bee" ecosystem on MicroPython.</p>
+            </div>
+            <div class="roadmap-item">
+                <strong>Phase 2: Arch Linux Evolution <span class="badge">Coming Soon</span></strong>
+                <p>Transitioning from a simulated script to a full-fledged Linux Distribution based on Arch Linux.</p>
+            </div>
+            <div class="roadmap-item">
+                <strong>Phase 3: Dreamworks Workspace</strong>
+                <p>Introduction of a graphical desktop environment inspired by Dreamworks aesthetics, similar to WhirlyOS (Pixar).</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Quick Start</h2>
+        <div class="terminal-box">
+            git clone "https://github.com/22soulfan/Lynux-Webs.git"<br>
+            # Run PYLINUX.py on your calculator or PC
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Lynux Webs Project. Licensed under MIT. Forked from hirohamada2014/PyLinux.</p>
+    <p>Find your spark. Find your way.</p>
+</footer>
+
+</body>
+</html>
